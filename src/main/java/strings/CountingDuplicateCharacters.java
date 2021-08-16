@@ -7,6 +7,7 @@ public class CountingDuplicateCharacters {
 
     private static final String STRING_INPUT = "Hallo, wie geht es ihnen";
 
+    // Independent solution
     public static Map<Character, Integer> countingDuplicateChar(String input) {
         Map<Character, Integer> result = new HashMap<>();
 
