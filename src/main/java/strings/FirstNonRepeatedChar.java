@@ -1,6 +1,8 @@
 package strings;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class FirstNonRepeatedChar {
 
@@ -26,6 +28,25 @@ public class FirstNonRepeatedChar {
             }
         }
         return position == Integer.MAX_VALUE ? Character.MIN_VALUE : input.charAt(position);
+    }
+
+    public char firstNonRepeatedCharLinkedList(String str) {
+        Map<Character, Integer> chars = new LinkedHashMap<>();
+
+        // Add string chars into LinkedHashMap
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            chars.compute(ch, (k, v) -> (v == null) ? 1 : ++v);
+        }
+
+        // return the first char key where value equals 1
+        for (Map.Entry<Character, Integer> entry :
+                chars.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+        return Character.MIN_VALUE;
     }
 
     public static void main(String[] args) {
