@@ -3,6 +3,8 @@ package strings;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class FirstNonRepeatedChar {
 
@@ -49,10 +51,31 @@ public class FirstNonRepeatedChar {
         return Character.MIN_VALUE;
     }
 
+    public String firstNonRepeatedCharLinkedListFuntionalStyle(String str) {
+        Map<Integer, Long> chs = str.codePoints()
+                .mapToObj(cp -> cp)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        LinkedHashMap::new, Collectors.counting()));
+        int cp = chs.entrySet().stream()
+                .filter(e -> e.getValue() == 1L)
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse((int) Character.MIN_VALUE);
+
+        return String.valueOf(Character.toChars(cp));
+
+    }
+
     public static void main(String[] args) {
         String str = "guten abend wie geht est ihnen";
         FirstNonRepeatedChar firstNonRepeatedChar = new FirstNonRepeatedChar();
         var res = firstNonRepeatedChar.firstNonRepeatedChar(str);
         System.out.println("✅ " + res);
+
+        var linkedListResult = firstNonRepeatedChar.firstNonRepeatedCharLinkedList(str);
+        System.out.println("✅ " + linkedListResult);
+
+        var functionalStyleResult = firstNonRepeatedChar.firstNonRepeatedCharLinkedListFuntionalStyle(str);
+        System.out.println("✅ " + functionalStyleResult);
     }
 }
