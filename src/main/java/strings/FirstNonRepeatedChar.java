@@ -51,7 +51,7 @@ public class FirstNonRepeatedChar {
         return Character.MIN_VALUE;
     }
 
-    public String firstNonRepeatedCharLinkedListFuntionalStyle(String str) {
+    public String firstNonRepeatedCharLinkedListFunctionalStyle(String str) {
         Map<Integer, Long> chs = str.codePoints()
                 .mapToObj(cp -> cp)
                 .collect(Collectors.groupingBy(Function.identity(),
@@ -75,7 +75,7 @@ public class FirstNonRepeatedChar {
         var linkedListResult = firstNonRepeatedChar.firstNonRepeatedCharLinkedList(str);
         System.out.println("✅ " + linkedListResult);
 
-        var functionalStyleResult = firstNonRepeatedChar.firstNonRepeatedCharLinkedListFuntionalStyle(str);
+        var functionalStyleResult = firstNonRepeatedChar.firstNonRepeatedCharLinkedListFunctionalStyle(str);
         System.out.println("✅ " + functionalStyleResult);
     }
 }
